@@ -6,7 +6,8 @@ var SerialPort = spLib.SerialPort;
 var SerialPortList = spLib.SerialPortList;
 
 var io = require("socket.io-client");
-var socket = io.connect('http://thinkcopter.com');
+
+
 
 
 SerialPortList(function(err, ports) {
@@ -28,22 +29,26 @@ SerialPortList(function(err, ports) {
 
 		var connectButton = document.getElementById("connect");
 		connectButton.onclick = function() {
+			var server = document.getElementById("server").value;
+			console.log('server: ' + server);
 			var port = portsPath.options[portsPath.selectedIndex].value;
 			var baudrateElement = document.getElementById("baudrate");
 			var baudrate = baudrateElement.options[baudrateElement.selectedIndex].value;
-			connect(port, baudrate);
+			connect(port, baudrate,server);
 		};
 	}
 });
 
+// function connectToServer(server){
+// 	var socket = io.connect(server);
+// }
 
-
-function connect(port, baudrate) {
+function connect(port, baudrate, server) {
 	var baud = 9600;
 	if (baudrate) {
 		baud = baudrate;
 	}
-
+var socket = io.connect(server)
 	var sp = new SerialPort(port, {
 	    baudrate: baud,
 	    buffersize: 1
@@ -88,6 +93,3 @@ sp.on("dataString", function(string) {
 	};
 
 }
-
-
-
