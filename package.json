@@ -1,0 +1,18 @@
+{
+  "name": "thinkcopter-client",
+  "version": "0.0.1",
+  "description": "Power a tiny helicopter with your brain",
+  "dependencies": {
+    "gulp": "^3.8.1",
+    "gulp-browserify": "^0.5.0",
+    "gulp-jshint": "^1.6.3",
+    "gulp-livereload": "^2.1.0",
+    "jshint-stylish": "^0.2.0",
+    "socket.io-client": "^1.0.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thinkcopter/thinkcopter-client"
+  }
+}

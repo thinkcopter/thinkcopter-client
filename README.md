@@ -9,3 +9,6 @@ Reads data from mindflex or neurosky headset via serial port
 
 → Brain data is stored to a database _(what are we using it for?)_
 
+Uses [browser-serialport](https://github.com/garrows/browser-serialport) to
+read serialport data.
+
