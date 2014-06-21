@@ -18,7 +18,7 @@
       <h1>Thinkcopter</h1>
 
 			<div id="settings" class="row">
-
+			<form>
 				<div class="col-sm-3">
 					<label for="portPath" class="control-label">Port Path:</label>
 					<select id="portPath" class="form-control"></select>
@@ -47,28 +47,16 @@
 					</select>
 				</div>
 				<div class="col-sm-4">
-					<label for="server">Server URL/IP:</label>
-					<input id="server" type="text" class="form-control" placeholder="http://yoursite.com  or http://555.555.55.55" required/>
+					<label for="server">Server URL/IP & Port if not 80:</label>
+					<input id="server" type="text" class="form-control" placeholder="http://yoursite.com:55  or http://55.55.55.55" required/>
 				</div>
 				<div class="col-sm-2">
-					<button id="connect" class="btn btn-primary">Connect</button>
+					<button id="connect" type ="submit" class="btn btn-primary">Connect</button>
 				</div>
-
+				</form>
 			</div>
 
 			<div id="connected-container">
-				<div class="row">
-					<div class="col-md-9">
-						<div class="input-group">
-							<label for="input">Input:</label>
-							<input id="input" type="text" class="form-control" />
-							<span class="input-group-btn">
-								<button id="send" class="btn btn-default">Send</button>
-							</span>
-						</div>
-					</div>
-				</div>
-
 				<div class="row">
 					<div class="col-md-9">
 						<label for="output">Output:</label>

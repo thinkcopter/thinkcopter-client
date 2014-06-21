@@ -76,20 +76,6 @@ sp.on("dataString", function(string) {
 		socket.emit('brainData', {data: string});
 });
 
-	function send() {
-		var line = input.value;
-		input.value = "";
-		sp.writeString(line + "\n");
-	}
 
-
-	var input = document.getElementById("input");
-	var sendButton = document.getElementById("send");
-	sendButton.onclick = send;
-	input.onkeypress = function(e) {
-		if (e.which == 13) { // Enter was pressed
-			send();
-		}
-	};
 
 }
