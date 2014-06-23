@@ -2,3 +2,4 @@ node_modules
 components
 *.pem
 .DS_Store
+bower_components

@@ -1,14 +1,11 @@
-/* From browser-serialport
- * https://github.com/garrows/browser-serialport */
+ // From browser-serialport
+ /* https://github.com/garrows/browser-serialport */
 
 var spLib = require('./serialport.js');
 var SerialPort = spLib.SerialPort;
 var SerialPortList = spLib.SerialPortList;
 
 var io = require("socket.io-client");
-
-
-
 
 SerialPortList(function(err, ports) {
 	var portsPath = document.getElementById("portPath");
@@ -39,19 +36,15 @@ SerialPortList(function(err, ports) {
 	}
 });
 
-// function connectToServer(server){
-// 	var socket = io.connect(server);
-// }
-
 function connect(port, baudrate, server) {
 	var baud = 9600;
 	if (baudrate) {
 		baud = baudrate;
 	}
-var socket = io.connect(server)
+	var socket = io.connect(server)
 	var sp = new SerialPort(port, {
-	    baudrate: baud,
-	    buffersize: 1
+		baudrate: baud,
+		buffersize: 1
 	}, true);
 
 	var output = document.getElementById("output");
@@ -66,16 +59,17 @@ var socket = io.connect(server)
 		output.textContent += "\nError: " + string + "\n";
 	});
 
-	// sp.on("data", function(data) {
-	// 	//console.log("Data", data);
-	// });
-
-sp.on("dataString", function(string) {
-	output.textContent += string;
-		console.log(string);
-		socket.emit('brainData', {data: string});
-});
-
-
-
+	var brstr = '';
+	sp.on("dataString", function(string) {
+		output.textContent += string;
+		brstr += string;
+		if (string.search('\r') !== -1) {
+			// brstr.replace('\n', '');
+			brstr = brstr.replace('\r', '');
+			brstr = brstr.replace('\n', '');
+			socket.emit('brainData', brstr);
+			console.log(brstr);
+			brstr = '';
+		}
+	});
 }
