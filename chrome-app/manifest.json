@@ -13,6 +13,7 @@
   },
 
   "icons": {
+    "128": "nodecopter.png"
   },
 
   "permissions": [
