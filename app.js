@@ -65,10 +65,15 @@ function connect(port, baudrate) {
 	// 	//console.log("Data", data);
 	// });
 
+var brstr = '';
 sp.on("dataString", function(string) {
 	output.textContent += string;
-		console.log(string);
-		socket.emit('brainData', {data: string});
+  brstr += string;
+  if (string.search('\r') !== -1) {
+    socket.emit('brainData', {data: brstr});
+    console.log(brstr);
+    brstr = '';
+  }
 });
 
 	function send() {
