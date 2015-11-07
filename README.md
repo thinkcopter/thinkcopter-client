@@ -15,3 +15,9 @@ read serialport data.
 → Brain data is stored to a database _(what are we using it for?)_
 
 
+# Build Project:
+
+```
+gulp build
+```
+
