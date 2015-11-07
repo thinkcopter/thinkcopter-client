@@ -1,0 +1,20 @@
+{
+  "name": "thinkcopter-client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/thinkcopter/thinkcopter-client",
+  "authors": [
+    "Robert Talamantez <robert.m.talamantez@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4"
+  }
+}
