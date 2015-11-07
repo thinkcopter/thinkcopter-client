@@ -1,24 +1,44 @@
-var gulp = require('gulp'),
+var fs = require('fs'),
+    gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
     clean = require('gulp-clean');
 
+function dirExistsSync (d) { 
+  try { return fs.statSync(d).isDirectory() } 
+  catch (er) { return false } 
+} 
+
+var dirPath = './chrome-app';
+
 gulp.task('clean', function(){
+  
   return gulp.src('./chrome-app/', {read: false})
     .pipe(clean());
 });
 
 gulp.task('jshint', ['clean'], function() {
-  return gulp.src(['*.js', './src/**/*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter(jshintStylish));
+  if ( !dirExistsSync( dirPath ) ){
+    console.log( dirPath + 'does not exist');
+    return;
+  } else {
+    return gulp.src(['*.js', './src/**/*.js'])
+      .pipe(jshint())
+      .pipe(jshint.reporter(jshintStylish));    
+  }
 });
 
 
 gulp.task('copy-js', function(){
-  return gulp.src('./src/js/serialport.js')
-    .pipe(gulp.dest('./chrome-app'));
+  var serialportSource = './src/js/serialport.js';
+  if ( !dirExistsSync( ) ){
+    return gulp.src( serialportSource )
+      .pipe(gulp.dest('./chrome-app'));      
+  } else {
+    return gulp.src( serialportSource )
+      .pipe(gulp.dest('./chrome-app/'));
+  }
 });
 
 gulp.task('copy-boiler', function(){
@@ -61,3 +81,5 @@ gulp.task('watch', ['build'], function() {
 gulp.task('build', ['browserify']);
 
 gulp.task('default', ['watch']);
+
+
