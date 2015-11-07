@@ -6,6 +6,7 @@ Reads data from mindflex or neurosky headset via serial port
   brain activity level
   
 → Browser displays a graph with brain activity
+<<<<<<< HEAD
 
 Uses [browser-serialport](https://github.com/garrows/browser-serialport) to
 read serialport data.
@@ -13,6 +14,8 @@ read serialport data.
 *Todo* 
 
 → Brain data is stored to a database _(what are we using it for?)_
+=======
+>>>>>>> master
 
 
 # Build Project:

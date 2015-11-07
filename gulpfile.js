@@ -26,6 +26,11 @@ gulp.task('copy-boiler', function(){
     .pipe(gulp.dest('./chrome-app/'));
 });
 
+gulp.task('copy-boiler', function(){
+  return gulp.src('./src/chrome-app-boiler-plate/*')
+    .pipe(gulp.dest('./chrome-app/'));
+});
+
 gulp.task('copy-bootstrap', function(){
   return gulp.src('./bower_components/bootstrap/dist/css/bootstrap.min.css')
     .pipe(gulp.dest('./chrome-app/'));
