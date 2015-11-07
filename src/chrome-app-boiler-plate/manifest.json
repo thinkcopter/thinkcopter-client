@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "Thinkcopter",
+  "description": "Power a tiny helicopter with your brain",
+
+  "version": "0.0.1",
+
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+
+  "icons": {
+    "128": "nodecopter.png"
+  },
+
+  "permissions": [
+    "serial",
+    {"socket": ["tcp-connect"]},
+    "usb"
+  ]
+
+}

@@ -3,3 +3,4 @@ components
 *.pem
 .DS_Store
 bower_components
+chrome-app
