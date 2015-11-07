@@ -15,12 +15,6 @@ gulp.task("jshint", function() {
     .pipe(jshint.reporter(jshintStylish));
 });
 
-gulp.task('browserify', ['clean','jshint','copy-js','copy-boiler'], function() {
-  return gulp.src(['./src/js/app.js'])
-    .pipe(browserify({ debug : true, "fullPaths": true }))
-    .pipe(gulp.dest('./chrome-app/'))
-    .on('end', livereload('.js'));
-});
 
 gulp.task('copy-js', function(){
   return gulp.src('./src/js/serialport.js')
@@ -39,8 +33,14 @@ var livereload = function (_file) {
   };
 };
 
+gulp.task('browserify', ['clean','jshint','copy-js','copy-boiler'], function() {
+  return gulp.src(['./src/js/app.js'])
+    .pipe(browserify({ debug : true, "fullPaths": true }))
+    .pipe(gulp.dest('./chrome-app/'))
+    .on('end', livereload('.js'));
+});
 
-gulp.task('watch', function() {
+gulp.task('watch', ['build'], function() {
 
   livereloadServer = require('gulp-livereload')();
 
@@ -50,4 +50,4 @@ gulp.task('watch', function() {
 
 gulp.task('build', ['browserify']);
 
-gulp.task('default', ['watch', 'build']);
+gulp.task('default', ['watch']);
