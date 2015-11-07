@@ -1,20 +1,33 @@
-var gulp = require('gulp'),
+var fs = require('fs'),
+    gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     jshint = require('gulp-jshint'),
     jshintStylish = require('jshint-stylish'),
     clean = require('gulp-clean');
 
+function dirExistsSync (d) { 
+  try { return fs.statSync(d).isDirectory() } 
+  catch (er) { return false } 
+}
+
 gulp.task('clean', function(){
-  return gulp.src('./chrome-app/', {read: false})
-    .pipe(clean());
+  console.log('cleanaling');
+  if ( !dirExistsSync('./chrome-app/') ){
+    console.log('it\'s not here');
+    fs.mkdirSync('./chrome-app');
+    return;
+  } else {
+    console.log('it\'s here');
+    return gulp.src('./chrome-app', {read: false})
+      .pipe(clean());
+  }
 });
 
 gulp.task('jshint', ['clean'], function() {
-  return gulp.src(['*.js', './src/**/*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter(jshintStylish));
+    return gulp.src(['*.js', './src/**/*.js'])
+      .pipe(jshint())
+      .pipe(jshint.reporter(jshintStylish));    
 });
-
 
 gulp.task('copy-js', function(){
   return gulp.src('./src/js/serialport.js')
@@ -34,7 +47,7 @@ gulp.task('copy-boiler', function(){
 gulp.task('copy-bootstrap', function(){
   return gulp.src('./bower_components/bootstrap/dist/css/bootstrap.min.css')
     .pipe(gulp.dest('./chrome-app/'));
-})
+});
 
 var livereloadServer = null;
 var livereload = function (_file) {
